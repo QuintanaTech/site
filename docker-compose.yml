@@ -1,0 +1,20 @@
+version: '2'
+services:
+    mysql:
+        image: mysql:5.5
+        ports:
+            - 3307:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=drupal
+        volumes:
+            - ./dev/docker/volumes:/var/lib/mysql
+
+    php:
+        build: ./dev/docker/php
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www/html
+        links:
+            - mysql
