@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function porto_views_install() {
+	db_query("UPDATE {system} SET weight = 100 WHERE type = 'module' AND name = 'porto_views'");
+}
+
+?>

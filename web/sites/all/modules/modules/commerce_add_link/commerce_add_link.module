@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function commerce_add_link_menu() {
+  $items['product/add/%'] = array (
+    'page callback' => 'commerce_add_link_product_add',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'), 
+    'type' => MENU_CALLBACK,
+  );  
+  return $items;
+}  
+
+/**
+ * Custom function to add product(s) to a cart by product id
+ */
+function commerce_add_link_product_add($pid,$quantity=1) {
+  if ($product = commerce_product_load($pid) ) {
+    global $user;
+    $uid = $user->uid;
+    $line_item = commerce_product_line_item_new($product, $quantity);
+    $line_item->field_ticket_type['und'][]['value'] = 0;
+    $line_item = commerce_cart_product_add($uid, $line_item, FALSE);
+    drupal_goto('shop');
+  }    
+}

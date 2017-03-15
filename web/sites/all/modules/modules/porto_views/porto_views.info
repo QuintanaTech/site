@@ -1,0 +1,10 @@
+name = Porto Views
+description = Views module for the Porto Drupal 7 Theme.
+core = 7.x
+package = Porto Theme
+version = "7.x-1.0"
+
+files[] = porto_views.module
+files[] = views/porto_views.views.inc
+files[] = views/porto_views_views_plugin_layouts.inc
+files[] = views/porto_views_handler_field_term_node_tid.inc

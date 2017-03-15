@@ -1,0 +1,10 @@
+name = Commerce Add Link
+description = Creates a menu link for adding products to the cart
+core = 7.x
+package = Commerce (contrib)
+
+package = Commerce
+dependencies[] = commerce
+dependencies[] = commerce_cart
+
+
