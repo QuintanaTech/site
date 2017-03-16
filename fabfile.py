@@ -3,6 +3,7 @@
 from dotenv import load_dotenv
 from fabric.api import *
 from fabric.colors import green, yellow
+from fabric.contrib.files import exists
 from os.path import join, dirname
 import os
 
@@ -26,7 +27,7 @@ def clean():
 
 
 @task()
-def pack_code():
+def build():
     clean()
     local('mkdir -p build/dist')
     local('mkdir -p build/tmp')
@@ -35,32 +36,44 @@ def pack_code():
         version = local('git rev-parse --short HEAD', True)
         print 'Built version %s' % version
         local('rm fabfile.py')
-        local('rm web/install.php web/upgrade.php INSTALL*')
         local('tar czf ../dist/site.tgz *')
 
 
-def upload_code():
+@task()
+def upload():
     run('mkdir -p $HOME/tmp')
     put('build/dist/site.tgz', 'tmp/')
-    with cd(env.app_path):
+
+
+@task()
+def deploy():
+    next_path = '%s/next' % env.app_path
+    run('mkdir -p %s' % next_path)
+    with cd(next_path):
         run('tar xzf $HOME/tmp/site.tgz')
-        run('rm -rf public_html')
-        run('ln -s ./web ./public_html')
+        run('ln -s $HOME/%s/assets/files web/files' % env.app_path)
+        run('ln -s $HOME/%s/assets/sites/default/files web/sites/default/files' % env.app_path)
+        run('ln -s $HOME/%s/assets/sites/default/private web/sites/default/private' % env.app_path)
+
+    with cd(env.app_path):
+        run('rm -rf previous')
+        if exists('latest'):
+            run('mv latest previous')
+
+        run('rm -f public_html')
+        run('mv next latest')
+        run('ln -s ./latest/web ./public_html')
+        run('ln -s ../.env ./latest/.env')
+
+    composer_update()
+
+    print green('Deployed site to %s' % env.app_path)
 
 
 @task()
 def composer_update():
     run('composer self-update')
-    with cd(env.app_path):
+    with cd('%s/latest' % env.app_path):
         put('./composer.json', 'composer.json')
         put('./composer.lock', 'composer.lock')
         run('composer install')
-
-
-@task()
-def deploy():
-    pack_code()
-    upload_code()
-    composer_update()
-
-    print green('Deployed site to %s' % env.app_path)
