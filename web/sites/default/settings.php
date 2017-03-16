@@ -245,9 +245,9 @@
  * @endcode
  */
 $databases = array (
-  'default' => 
+  'default' =>
   array (
-    'default' => 
+    'default' =>
     array (
       'database' => getenv('DRUPAL_MYSQL_NAME'),
       'username' => getenv('DRUPAL_MYSQL_USER'),
@@ -290,7 +290,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = 'h20MHYUDk85KK2EeBjHpYGG_8x5uRao8UbiRJfskNw8';
+$drupal_hash_salt = getenv('DRUPAL_HASH_SALT');
 
 /**
  * Base URL (optional).

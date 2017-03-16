@@ -1,10 +1,10 @@
+.env
 # Build data
 /build/
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
 /dev/docker/volumes
-/web/.env
 /vendor/
 
 web/files/
