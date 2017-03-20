@@ -51,9 +51,10 @@ def deploy():
     run('mkdir -p %s' % next_path)
     with cd(next_path):
         run('tar xzf $HOME/tmp/site.tgz')
-        run('ln -s $HOME/%s/assets/files web/files' % env.app_path)
-        run('ln -s $HOME/%s/assets/sites/default/files web/sites/default/files' % env.app_path)
-        run('ln -s $HOME/%s/assets/sites/default/private web/sites/default/private' % env.app_path)
+        run('ln -s $HOME/%s/shared/files web/files' % env.app_path)
+        run('ln -s $HOME/%s/shared/sites/all web/sites/all' % env.app_path)
+        run('ln -s $HOME/%s/shared/sites/default/files web/sites/default/files' % env.app_path)
+        run('ln -s $HOME/%s/shared/sites/default/private web/sites/default/private' % env.app_path)
 
     with cd(env.app_path):
         run('rm -rf previous')
