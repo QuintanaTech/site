@@ -1,6 +1,7 @@
 .env
 # Build data
 /build/
+html
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~

@@ -18,4 +18,6 @@ RUN apt-get update && apt-get install -y \
 
 ENTRYPOINT ["/entry.sh"]
 
+WORKDIR /var/www
+
 CMD ["apache2-foreground"]

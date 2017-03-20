@@ -59,6 +59,10 @@ function authorize_access_allowed() {
 }
 
 // *** Real work of the script begins here. ***
+require_once dirname(__DIR__).'/vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(dirname(__DIR__));
+$dotenv->overload();
 
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 require_once DRUPAL_ROOT . '/includes/common.inc';

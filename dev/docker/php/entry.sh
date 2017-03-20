@@ -1,7 +1,9 @@
 #!/bin/sh
 set -e
 
-chown -R www-data:www-data /var/www/html/src/sites/default/files
+rm -rf /var/www/html
+ln -s /var/www/web /var/www/html
+chown -R www-data:www-data /var/www/html/sites/default/files
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
