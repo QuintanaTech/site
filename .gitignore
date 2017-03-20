@@ -9,6 +9,7 @@ html
 /vendor/
 
 web/files/
+web/sites/all/*
 web/sites/*/files
 web/sites/*/private
 
