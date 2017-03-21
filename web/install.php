@@ -10,6 +10,9 @@
  */
 define('DRUPAL_ROOT', getcwd());
 
+require_once dirname(__DIR__).'/vendor/autoload.php';
+require_once DRUPAL_ROOT.'/env.php';
+
 /**
  * Global flag to indicate the site is in installation mode.
  */

@@ -379,9 +379,7 @@ ini_set('display_errors', FALSE);
 // We prepare a minimal bootstrap for the update requirements check to avoid
 // reaching the PHP memory limit.
 require_once dirname(__DIR__).'/vendor/autoload.php';
-
-$dotenv = new Dotenv\Dotenv(dirname(__DIR__));
-$dotenv->overload();
+require_once DRUPAL_ROOT.'/env.php';
 
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 require_once DRUPAL_ROOT . '/includes/update.inc';
