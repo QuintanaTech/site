@@ -36,6 +36,7 @@ def build():
         version = local('git rev-parse --short HEAD', True)
         print 'Built version %s' % version
         local('rm fabfile.py')
+        local('echo "%s" > .version' % version)
         local('tar czf ../dist/site.tgz *')
 
 
