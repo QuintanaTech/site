@@ -51,6 +51,7 @@ def deploy():
     run('mkdir -p %s' % next_path)
     with cd(next_path):
         run('tar xzf $HOME/tmp/site.tgz')
+        run('ln -s $HOME/%s/shared/googled4dc48f17b9c9699.html web/googled4dc48f17b9c9699.html' % env.app_path)
         run('ln -s $HOME/%s/shared/files web/files' % env.app_path)
         run('ln -s $HOME/%s/shared/sites/all web/sites/all' % env.app_path)
         run('ln -s $HOME/%s/shared/sites/default/files web/sites/default/files' % env.app_path)

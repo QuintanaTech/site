@@ -10,6 +10,11 @@
  */
 define('DRUPAL_ROOT', getcwd());
 
+require_once dirname(__DIR__).'/vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(dirname(__DIR__));
+$dotenv->overload();
+
 include_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
