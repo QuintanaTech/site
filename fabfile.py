@@ -37,7 +37,7 @@ def build():
         print 'Built version %s' % version
         local('rm fabfile.py')
         local('echo "%s" > .version' % version)
-        local('tar czf ../dist/site.tgz *')
+        local('tar czf ../dist/site.tgz ./.version *')
 
 
 @task()
@@ -63,7 +63,7 @@ def deploy():
         if exists('latest'):
             run('mv latest previous')
 
-        run('rm -f public_html')
+        run('unlink public_html')
         run('mv next latest')
         run('ln -s ./latest/web ./public_html')
         run('ln -s ../.env ./latest/.env')
