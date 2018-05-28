@@ -25,3 +25,5 @@ web/README.txt
 web/sites/README.txt
 web/sites/all/modules/README.txt
 web/sites/all/themes/README.txt
+*.pyc
+*.phar

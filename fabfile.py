@@ -15,9 +15,9 @@ env.user = os.environ.get('FAB_DEPLOY_USER')
 # the servers where the commands are executed
 env.hosts = str(os.environ.get('FAB_DEPLOY_HOST')).split(',')
 
-env.app_path = os.environ.get('FAB_DEPLOY_PATH')
+env.app_path = 'var/quintana.tech'
 
-env.key_filename = os.environ.get('FAB_DEPLOY_KEY')
+# env.key_filename = os.environ.get('FAB_DEPLOY_KEY')
 
 
 @task()
@@ -48,6 +48,9 @@ def upload():
 
 @task()
 def deploy():
+    build()
+    upload()
+
     next_path = '%s/next' % env.app_path
     run('mkdir -p %s' % next_path)
     with cd(next_path):

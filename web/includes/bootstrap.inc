@@ -1,5 +1,8 @@
 <?php
 
+require_once dirname(DRUPAL_ROOT).'/vendor/autoload.php';
+require_once DRUPAL_ROOT.'/env.php';
+
 /**
  * @file
  * Functions that need to be loaded on every Drupal request.
