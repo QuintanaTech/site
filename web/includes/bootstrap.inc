@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(DRUPAL_ROOT).'/vendor/autoload.php';
-require_once DRUPAL_ROOT.'/env.php';
+require_once dirname(dirname(__DIR__)).'/vendor/autoload.php';
+require_once dirname(__DIR__).'/env.php';
 
 /**
  * @file
