@@ -59,8 +59,6 @@ function authorize_access_allowed() {
 }
 
 // *** Real work of the script begins here. ***
-require_once dirname(__DIR__).'/vendor/autoload.php';
-require_once DRUPAL_ROOT.'/env.php';
 
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 require_once DRUPAL_ROOT . '/includes/common.inc';
