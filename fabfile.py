@@ -37,7 +37,6 @@ def build():
         print 'Built version %s' % version
         local('rm fabfile.py')
         local('echo "%s" > .version' % version)
-        local('composer install')
         local('tar czf ../dist/site.tgz ./.version *')
 
 
@@ -81,6 +80,4 @@ def deploy():
 def composer_update():
     run('composer self-update')
     with cd('%s/latest' % env.app_path):
-        put('./composer.json', 'composer.json')
-        put('./composer.lock', 'composer.lock')
-        run('composer install')
+        run('composer install --ignore-platform-reqs')

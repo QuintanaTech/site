@@ -3,6 +3,6 @@
     	"php": "^5.6",
         "vlucas/phpdotenv": "^2.4",
         "pantheon-systems/terminus": "^1.8",
-        "drush/drush": "^8.1"
+        "drush/drush": "^9.3"
     }
 }
