@@ -37,6 +37,7 @@ def build():
         print 'Built version %s' % version
         local('rm fabfile.py')
         local('echo "%s" > .version' % version)
+        local('composer install')
         local('tar czf ../dist/site.tgz ./.version *')
 
 
